@@ -77,7 +77,7 @@ test_is_supported_maven_version_default() {
 }
 
 test_is_supported_maven_version_old() {
-  capture is_supported_maven_version "3.6.2" "https://lang-jvm.s3.amazonaws.com/maven-3.6.2.tar.gz"
+  capture is_supported_maven_version "3.8.4" "https://lang-jvm.s3.amazonaws.com/maven-3.8.4.tar.gz"
   assertCapturedSuccess
 }
 

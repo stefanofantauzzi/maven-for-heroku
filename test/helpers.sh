@@ -115,7 +115,7 @@ _assertMaven354() {
 
 _assertMavenLatest() {
   local installDir="$(_mavenDir)"
-  assertCaptured "Wrong Maven Installed" "Installing Maven 3.6.2"
+  assertCaptured "Wrong Maven Installed" "Installing Maven 3.8.4"
   assertFileMD5 "833f5bcc6ee59f6716223f866570bc88" ${installDir}/.maven/bin/mvn
   assertTrue "mvn should be executable" "[ -x ${installDir}/.maven/bin/mvn ]"
 

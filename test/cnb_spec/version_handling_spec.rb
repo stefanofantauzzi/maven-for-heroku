@@ -1,6 +1,6 @@
 require_relative "spec_helper"
 
-DEFAULT_MAVEN_VERSION = "3.6.2"
+DEFAULT_MAVEN_VERSION = "3.8.4"
 PREVIOUS_MAVEN_VERSION = "3.5.4"
 UNKNOWN_MAVEN_VERSION = "1.0.0-unknown-version"
 SIMPLE_HTTP_SERVICE_MAVEN_WRAPPER_VERSION = "3.6.3"
@@ -73,14 +73,14 @@ describe "Heroku's Maven Cloud Native Buildpack" do
       end
     end
 
-    context "with 'maven.version=3.6.2' in its system.properties file" do
-      it "will install Maven 3.6.2" do
+    context "with 'maven.version=3.8.4' in its system.properties file" do
+      it "will install Maven 3.8.4" do
         rapier.app_dir_from_fixture("simple-http-service") do |app_dir|
           remove_maven_wrapper(app_dir)
-          set_maven_version(app_dir, "3.6.2")
+          set_maven_version(app_dir, "3.8.4")
           rapier.pack_build(app_dir) do |pack_result|
-            expect(pack_result.stdout).to include("[Installing Maven 3.6.2]")
-            expect(pack_result.stdout).to include("[BUILDPACK INTEGRATION TEST - MAVEN VERSION] 3.6.2")
+            expect(pack_result.stdout).to include("[Installing Maven 3.8.4]")
+            expect(pack_result.stdout).to include("[BUILDPACK INTEGRATION TEST - MAVEN VERSION] 3.8.4")
           end
         end
       end

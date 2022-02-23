@@ -23,7 +23,7 @@
 
 ## v65
 
-+ Upgrade default Maven version to 3.6.2
++ Upgrade default Maven version to 3.8.4
 
 ## 64
 
