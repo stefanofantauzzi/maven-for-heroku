@@ -21,14 +21,14 @@ do
   BUILD_DIR=build
   NAME=$(echo $FILE | sed -e 's/.*apache-\(maven-[0-9]*.[0-9]*.[0-9]*\)-bin.tar.gz/\1/g')
   #TARBALL=${NAME}.tar.gz
-  TARBALL='apache-maven-3.8.4-bin.tar.gz'
+  TARBALL=${NAME}.tar.gz
   EXISTS=$(aws s3 ls s3://lang-jvm/${TARBALL} --profile lang-jvm)
   if [ -z "$EXISTS" ]; then
     echo "---> Building $NAME..."
     mkdir -p $BUILD_DIR/.m2/repository
 
     echo -n "     Unpacking..."
-    tar xzvf $FILE -C $BUILD_DIR &> /dev/null
+    tar -zxvf $FILE -C $BUILD_DIR &> /dev/null
     mv ${BUILD_DIR}/apache-maven* ${BUILD_DIR}/.maven
     echo " done"
 
