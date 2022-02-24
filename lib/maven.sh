@@ -94,7 +94,7 @@ run_mvn() {
     install_maven ${mavenInstallDir} ${home}
     mtime "mvn.${scope}.time" "${start}"
     #PATH="${mavenInstallDir}/.maven/bin:$PATH"
-    PATH="apache-maven-$mavenVersion/bin/mvn:$PATH"
+    PATH="apache-maven-$mavenVersion/bin/mvn"
     local mavenExe="mvn"
     cd $home
   fi
