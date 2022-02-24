@@ -15,7 +15,7 @@ install_maven() {
 
   status_pending "Installing Maven ${mavenVersion}"
   #local mavenUrl="https://lang-jvm.s3.amazonaws.com/maven-${mavenVersion}.tar.gz" rollback maybe?
-  local mavenUrl="https://archive.apache.org/dist/maven/maven-3/${mavenVersion}/binaries/apache-maven-${mavenVersion}.tar.gz"
+  local mavenUrl="https://archive.apache.org/dist/maven/maven-3/${mavenVersion}/binaries/apache-maven-${mavenVersion}-bin.tar.gz"
   if is_supported_maven_version "${mavenVersion}" "${mavenUrl}"; then
     download_maven "${mavenUrl}" "${installDir}" "${mavenHome}"
     status_done
@@ -31,7 +31,7 @@ download_maven() {
   local installDir=$2
   local mavenHome=$3
   rm -rf $mavenHome
-  curl --retry 3 --silent --max-time 60 --location "${mavenUrl}" | tar xm -C $installDir
+  curl --retry 3 --silent --max-time 60 --location "${mavenUrl}" | tar xzm -C $installDir
   chmod +x $mavenHome/bin/mvn
 }
 
