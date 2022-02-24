@@ -20,8 +20,7 @@ for FILE in apache-maven-*.tar.gz
 do
   BUILD_DIR=build
   NAME=$(echo $FILE | sed -e 's/.*apache-\(maven-[0-9]*.[0-9]*.[0-9]*\)-bin.tar.gz/\1/g')
-  #TARBALL=${NAME}.tar.gz
-  TARBALL=${NAME}.tar.gz
+  TARBALL=${NAME}#.tar.gz modified for 3.8.4
   EXISTS=$(aws s3 ls s3://lang-jvm/${TARBALL} --profile lang-jvm)
   if [ -z "$EXISTS" ]; then
     echo "---> Building $NAME..."
