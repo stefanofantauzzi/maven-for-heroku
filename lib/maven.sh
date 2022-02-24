@@ -101,7 +101,8 @@ run_mvn() {
 
   export MAVEN_OPTS="$(_mvn_java_opts ${scope} ${home} ${mavenInstallDir})"
 
-  cd $home
+  #cd $home
+  cd $mavenInstallDir
   local mvnOpts="$(_mvn_cmd_opts ${scope})"
   status "Executing Maven"
   echo "$ ${mavenExe} ${mvnOpts}" | indent
