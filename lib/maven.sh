@@ -93,7 +93,7 @@ run_mvn() {
     let start=$(nowms)
     install_maven ${mavenInstallDir} ${home}
     mtime "mvn.${scope}.time" "${start}"
-    PATH="${mavenInstallDir}/.maven/bin:$PATH"
+    PATH="${mavenInstallDir}/apache-maven-$mavenVersion/bin:$PATH"
     #PATH="apache-maven-$mavenVersion/bin/mvn"
     local mavenExe="mvn"
     cd $home
