@@ -30,8 +30,8 @@ download_maven() {
   local mavenUrl=$1
   local installDir=$2
   local mavenHome=$3
-  curl --retry 3 --silent --max-time 60 --location "${mavenUrl}" | tar xzm -C ./$mavenHome
-  chmod +x ./$mavenHome/bin/mvn
+  curl --retry 3 --silent --max-time 60 --location "${mavenUrl}" | tar xzm -C $installDir/$mavenHome
+  chmod +x $installDir/$mavenHome/bin/mvn
 }
 
 is_supported_maven_version() {
