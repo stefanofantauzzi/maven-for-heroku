@@ -10,7 +10,7 @@ TMPDIR=$(mktemp -d -t maven-build)
 
 echo "---> Downloading sources..."
 cd $TMPDIR
-for MAVEN in $(cat ${VENDOR_DIR}/sources.txt) trying to force maven 3.8.4
+for MAVEN in $(cat ${VENDOR_DIR}/sources.txt)
 do
   echo "     $MAVEN..."
   curl -O --silent --location $MAVEN
