@@ -23,4 +23,8 @@ install_jdk "${BUILD_DIR}" "${CACHE_DIR}"
 [ -n "$(find ${BUILD_DIR} -type f -name "*.groovy")" ] && mcount "groovy.source"
 
 run_mvn "compile" $BUILD_DIR $CACHE_DIR "3.8.4"
+#adding mvn
+    for DIR in ".m2" ".maven" ; do
+     cp -r $CACHE_DIR/apache-maven-3.8.4 $BUILD_DIR/.maven
+    done
  remove_mvn $BUILD_DIR $CACHE_DIR
