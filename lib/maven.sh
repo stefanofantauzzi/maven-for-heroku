@@ -136,6 +136,6 @@ remove_mvn() {
   local mavenInstallDir=${2}
   if has_maven_wrapper $home; then
     cache_copy ".m2/wrapper" "$home" "$mavenInstallDir"
-    #rm -rf "$home/.m2"
+    rm -rf "$home/.m2"
   fi
 }
