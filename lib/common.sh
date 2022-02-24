@@ -6,11 +6,12 @@ export BUILDPACK_STDLIB_URL="https://lang-common.s3.amazonaws.com/buildpack-stdl
 install_maven() {
   local installDir=$1
   local buildDir=$2
-  mavenHome=$installDir/.maven
 
   definedMavenVersion=$(detect_maven_version $buildDir)
 
   mavenVersion=${definedMavenVersion:-$DEFAULT_MAVEN_VERSION}
+  mavenHome=$installDir/apache-maven-$mavenVersion
+
   mcount "mvn.version.${mavenVersion}"
 
   status_pending "Installing Maven ${mavenVersion}"
