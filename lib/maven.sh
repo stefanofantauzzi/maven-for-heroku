@@ -80,6 +80,7 @@ run_mvn() {
   local scope=${1}
   local home=${2}
   local mavenInstallDir=${3}
+  local mavenVersion=${4}
 
   mkdir -p ${mavenInstallDir}
   if has_maven_wrapper $home; then
@@ -92,7 +93,8 @@ run_mvn() {
     let start=$(nowms)
     install_maven ${mavenInstallDir} ${home}
     mtime "mvn.${scope}.time" "${start}"
-    PATH="${mavenInstallDir}/.maven/bin:$PATH"
+    #PATH="${mavenInstallDir}/.maven/bin:$PATH"
+    PATH="apache-maven-$mavenVersion/bin/mvn:$PATH"
     local mavenExe="mvn"
     cd $home
   fi
@@ -101,7 +103,8 @@ run_mvn() {
 
   export MAVEN_OPTS="$(_mvn_java_opts ${scope} ${home} ${mavenInstallDir})"
 
-  cd $home
+  #cd $home
+  cd $PATH
   local mvnOpts="$(_mvn_cmd_opts ${scope})"
   status "Executing Maven"
   echo "$ ${mavenExe} ${mvnOpts}" | indent
