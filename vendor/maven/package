@@ -10,17 +10,20 @@ TMPDIR=$(mktemp -d -t maven-build)
 
 echo "---> Downloading sources..."
 cd $TMPDIR
-for MAVEN in $(cat ${VENDOR_DIR}/sources.txt)
-do
-  echo "     $MAVEN..."
-  curl -O --silent --location $MAVEN
-done
+#for MAVEN in $(cat ${VENDOR_DIR}/sources.txt) trying to force maven 3.8.4
+#do
+  #echo "     $MAVEN..."
+  #curl -O --silent --location $MAVEN
+#done
+
+echo "     https://archive.apache.org/dist/maven/maven-3/3.8.4/binaries/apache-maven-3.8.4-bin.tar.gz..."
+curl -O --silent --location 'https://archive.apache.org/dist/maven/maven-3/3.8.4/binaries/apache-maven-3.8.4-bin.tar.gz'
 
 for FILE in apache-maven-*.tar.gz
 do
   BUILD_DIR=build
   NAME=$(echo $FILE | sed -e 's/.*apache-\(maven-[0-9]*.[0-9]*.[0-9]*\)-bin.tar.gz/\1/g')
-  TARBALL=${NAME}#.tar.gz modified for 3.8.4
+  TARBALL=${NAME}.tar.gz
   EXISTS=$(aws s3 ls s3://lang-jvm/${TARBALL} --profile lang-jvm)
   if [ -z "$EXISTS" ]; then
     echo "---> Building $NAME..."
