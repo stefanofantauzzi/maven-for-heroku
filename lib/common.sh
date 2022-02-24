@@ -6,7 +6,7 @@ export BUILDPACK_STDLIB_URL="https://lang-common.s3.amazonaws.com/buildpack-stdl
 install_maven() {
   local installDir=$1
   local buildDir=$2
-  mavenHome=/.maven
+  mavenHome=$installDir/.maven
 
   definedMavenVersion=$(detect_maven_version $buildDir)
 
@@ -30,8 +30,9 @@ download_maven() {
   local mavenUrl=$1
   local installDir=$2
   local mavenHome=$3
-  curl --retry 3 --silent --max-time 60 --location "${mavenUrl}" | tar xzm -C $installDir/$mavenHome
-  chmod +x $installDir/$mavenHome/bin/mvn
+  rm -rf $mavenHome
+  curl --retry 3 --silent --max-time 60 --location "${mavenUrl}" | tar xzm -C $installDir
+  chmod +x $mavenHome/bin/mvn
 }
 
 is_supported_maven_version() {
