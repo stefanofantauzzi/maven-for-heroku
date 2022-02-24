@@ -30,7 +30,7 @@ download_maven() {
   local installDir=$2
   local mavenHome=$3
   rm -rf $mavenHome
-  curl --retry 3 --silent --max-time 60 --location "${mavenUrl}" | tar xzm -C $installDir
+  curl --retry 3 --silent --max-time 60 --location "${mavenUrl}" | tar xm -C $installDir
   chmod +x $mavenHome/bin/mvn
 }
 
@@ -90,7 +90,7 @@ install_jdk() {
   let start=$(nowms)
   JVM_COMMON_BUILDPACK=${JVM_COMMON_BUILDPACK:-https://buildpack-registry.s3.amazonaws.com/buildpacks/heroku/jvm.tgz}
   mkdir -p /tmp/jvm-common
-  curl --retry 3 --silent --location $JVM_COMMON_BUILDPACK | tar xzm -C /tmp/jvm-common --strip-components=1
+  curl --retry 3 --silent --location $JVM_COMMON_BUILDPACK | tar xm -C /tmp/jvm-common --strip-components=1
   source /tmp/jvm-common/bin/util
   source /tmp/jvm-common/bin/java
   source /tmp/jvm-common/opt/jdbc.sh
