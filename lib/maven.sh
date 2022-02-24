@@ -93,8 +93,8 @@ run_mvn() {
     let start=$(nowms)
     install_maven ${mavenInstallDir} ${home}
     mtime "mvn.${scope}.time" "${start}"
-    #PATH="${mavenInstallDir}/.maven/bin:$PATH"
-    PATH="apache-maven-$mavenVersion/bin/mvn"
+    PATH="${mavenInstallDir}/.maven/bin:$PATH"
+    #PATH="apache-maven-$mavenVersion/bin/mvn"
     local mavenExe="mvn"
     cd $home
   fi
@@ -104,7 +104,7 @@ run_mvn() {
   export MAVEN_OPTS="$(_mvn_java_opts ${scope} ${home} ${mavenInstallDir})"
 
   #cd $home
-  cd $PATH
+  cd $mavenInstallDir/apache-maven-$mavenVersion/bin/mvn
   local mvnOpts="$(_mvn_cmd_opts ${scope})"
   status "Executing Maven"
   echo "$ ${mavenExe} ${mvnOpts}" | indent
