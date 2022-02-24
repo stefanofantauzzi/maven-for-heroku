@@ -10,14 +10,11 @@ TMPDIR=$(mktemp -d -t maven-build)
 
 echo "---> Downloading sources..."
 cd $TMPDIR
-#for MAVEN in $(cat ${VENDOR_DIR}/sources.txt) trying to force maven 3.8.4
-#do
-  #echo "     $MAVEN..."
-  #curl -O --silent --location $MAVEN
-#done
-
-echo "     https://archive.apache.org/dist/maven/maven-3/3.8.4/binaries/apache-maven-3.8.4-bin.tar.gz..."
-curl -O --silent --location 'https://archive.apache.org/dist/maven/maven-3/3.8.4/binaries/apache-maven-3.8.4-bin.tar.gz'
+for MAVEN in $(cat ${VENDOR_DIR}/sources.txt) trying to force maven 3.8.4
+do
+  echo "     $MAVEN..."
+  curl -O --silent --location $MAVEN
+done
 
 for FILE in apache-maven-*.tar.gz
 do
@@ -30,7 +27,7 @@ do
     mkdir -p $BUILD_DIR/.m2/repository
 
     echo -n "     Unpacking..."
-    tar -zxvf $FILE -C $BUILD_DIR &> /dev/null
+    tar -xvf $FILE -C $BUILD_DIR &> /dev/null
     mv ${BUILD_DIR}/apache-maven* ${BUILD_DIR}/.maven
     echo " done"
 
