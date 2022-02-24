@@ -31,6 +31,7 @@ download_maven() {
   local installDir=$2
   local mavenHome=$3
   curl --retry 3 --silent --max-time 60 --location "${mavenUrl}" | tar xzm -C $installDir
+  mkdir -p $mavenHome/bin/mvn
   chmod +x $mavenHome/bin/mvn
 }
 
