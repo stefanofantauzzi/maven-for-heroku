@@ -20,7 +20,7 @@ _mvn_cmd_opts() {
 
   if [ "$scope" = "compile" ]; then
     echo -n "${MAVEN_CUSTOM_OPTS:-"-DskipTests"}"
-    echo -n " ${MAVEN_CUSTOM_GOALS:-"clean dependency:list install"}"
+    echo -n " ${MAVEN_CUSTOM_GOALS:-"clean install"}"
   elif [ "$scope" = "test-compile" ]; then
     echo -n "${MAVEN_CUSTOM_GOALS:-"clean dependency:resolve-plugins test-compile"}"
   else
@@ -111,7 +111,7 @@ run_mvn() {
 
   local cache_status="$(get_cache_status ${mavenInstallDir})"
   let start=$(nowms)
-  ${mavenExe} -DoutputFile=target/mvn-dependency-list.log -B ${mvn_settings_opt} ${mvnOpts} | indent
+  ${mavenExe} -B ${mvn_settings_opt} ${mvnOpts} | indent
 
   if [ "${PIPESTATUS[*]}" != "0 0" ]; then
     error "Failed to build app with Maven
