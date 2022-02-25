@@ -20,7 +20,8 @@ _mvn_cmd_opts() {
 
   if [ "$scope" = "compile" ]; then
     echo -n "${MAVEN_CUSTOM_OPTS:-"-DskipTests=true -Dspotless.check.skip=true -Dspotbugs.skip=true"}"
-    echo -n " ${MAVEN_CUSTOM_GOALS:-" clean install -U"}"
+    echo -n " ${MAVEN_CUSTOM_GOALS:-" clean install "}"
+    echo -n " ${MAVEN_CUSTOM_GOALS:-" clean install "}"
   elif [ "$scope" = "test-compile" ]; then
     echo -n "${MAVEN_CUSTOM_GOALS:-"clean dependency:resolve-plugins test-compile"}"
   else
