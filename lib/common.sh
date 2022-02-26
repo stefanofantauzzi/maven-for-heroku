@@ -7,7 +7,7 @@ install_maven() {
   local installDir=$1
   local buildDir=$2
 
-  definedMavenVersion=$(detect_maven_version $buildDir)
+  definedMavenVersion=$(detect_maven_version)
 
   mavenVersion=${definedMavenVersion:-$DEFAULT_MAVEN_VERSION}
   mavenHome=$installDir/apache-maven-$mavenVersion
